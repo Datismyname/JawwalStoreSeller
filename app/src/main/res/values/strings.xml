@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Jawwal Store Seller</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_account">حسابي</string>
+    <string name="title_history">التاريخ</string>
+    <string name="title_notifications">تنبيهاتي</string>
+    <string name="title_store">المبيعات</string>
+
+    <string name="sign_in">تسجيل الدخول</string>
+
+    <string name="phone_type">ايفون 6</string>
+    <string name="phone_type_detail">الجوال:</string>
+    <string name="phone_problem_title">(الشاشة)</string>
+    <string name="phone_problem_title_detail">العطل أو المشكلة:</string>
+    <string name="problem_predescription">الشاشة مكسورة أو اللمس لا يعمل</string>
+    <string name="problem_description">الشاشه ياخي تلمس من حالها احرجتني مع الناس ترسل لهم رسايل وتدق عليهم من نفسها</string>
+
+    <string name="order_new">*جديد</string>
+
+    <string name="send_offer_pre_pricing">ضع السعر المبدئي</string>
+    <string name="send_offer_pre_pricing_details">(السعر النهائي يحدد بعد الفحص)</string>
+    <string name="send_offer_button">أرسل العرض</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:verticalScrollbarPosition="left"
+    >
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView_item_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        tools:context=".repairshop.ProblemDescriptionFormActivity">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout_problem_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:background="@drawable/rect_rounded_gray_with_border"
+                >
+                <TextView
+                    android:id="@+id/phone_type_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/phone_type_detail" />
+
+                <TextView
+                    android:id="@+id/textView_phone_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/phone_type_detail"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/phone_type" />
+
+                <TextView
+                    android:id="@+id/phone_problem_title_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/textView_phone_type"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/phone_problem_title_detail" />
+                <TextView
+                    android:id="@+id/textView_phone_problem_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/phone_problem_title_detail"
+                    android:layout_below="@+id/textView_phone_type"
+                    android:layout_marginEnd="5dp"
+
+                    android:textAlignment="viewEnd"
+                    android:ems="10"
+                    android:padding="5dp"
+                    android:text="@string/phone_problem_title"
+                    />
+
+                <TextView
+                    android:id="@+id/textView_problem_predescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView_phone_problem_title"
+                    android:layout_alignEnd="@+id/textView_phone_type"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/problem_predescription" />
+
+
+                <TextView
+                    android:id="@+id/textView_problem_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView_problem_predescription"
+                    android:layout_alignEnd="@+id/textView_problem_predescription"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/problem_description" />
+
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/textView_pricing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout_problem_details"
+                android:layout_alignEnd="@+id/relativeLayout_problem_details"
+                android:layout_marginTop="50dp"
+                android:text="@string/send_offer_pre_pricing"/>
+
+            <TextView
+                android:id="@+id/textView_pricing_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout_problem_details"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@+id/textView_pricing"
+                android:text="@string/send_offer_pre_pricing_details"
+                android:textSize="12sp" />
+            <EditText
+                android:id="@+id/editText_offer_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView_pricing"
+                android:layout_alignEnd="@+id/relativeLayout_problem_details"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/rect_rounded_white_with_border"
+                android:textAlignment="viewEnd"
+                android:ems="10"
+                android:inputType="phone"
+                android:padding="5dp" />
+
+            <Button
+                android:id="@+id/button_send_order"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/editText_offer_price"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="35dp"
+                android:background="@drawable/rect_round_primary_color"
+                android:text="@string/send_offer_button"
+                android:textColor="#fff" />
+
+        </RelativeLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+</ScrollView>
