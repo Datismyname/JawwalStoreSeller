@@ -13,7 +13,6 @@ import org.jetbrains.anko.textColor
 
 class OrderNotificationItem(
         val repairOrder: RepairOrder,
-        val orderStatus:String,
         val userRating:Double, val orderId: String, val acceptedStoreId: String? , val context: Context) : Item(){
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
@@ -22,20 +21,20 @@ class OrderNotificationItem(
 
         viewHolder.textView_problem_title.text = "(${repairOrder.problemTitle})"
 
-        viewHolder.textView_order_status.text = orderStatus
+        viewHolder.textView_order_status.text = repairOrder.orderStatus!!["codeName"].toString()
 
 
 
-        when( orderStatus ){
+        when( repairOrder.orderStatus!!["codeName"].toString() ){
 
-            "جديد" ->   {
+            "new" ->   {
 
                 viewHolder.textView_order_status.setTextColor( Color.RED )
                 viewHolder.relativeLayout_prefix.background = ResourcesCompat
                         .getDrawable(context.resources, R.drawable.rect_rounded_red, null)
             }
 
-            "تم تقديم عرض" ->   {
+            "offered" ->   {
 
                 viewHolder.textView_order_status.textColor = "#ff9500".toColor()
                 viewHolder.relativeLayout_prefix.background = ResourcesCompat
@@ -43,7 +42,7 @@ class OrderNotificationItem(
 
             }
 
-            "تم قبول عرضك" ->   {
+            "accepted" ->   {
 
                 viewHolder.textView_order_status.textColor = "#297b00".toColor()
                 viewHolder.relativeLayout_prefix.background = ResourcesCompat

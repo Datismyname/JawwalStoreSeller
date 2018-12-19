@@ -7,11 +7,11 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.hadilabs.jawwalstoreseller.model.*
 import com.hadilabs.jawwalstoreseller.recyclerview.item.RepairOrderItem
-import com.hadilabs.jawwalstoreseller.model.RepairOffer
-import com.hadilabs.jawwalstoreseller.model.RepairOrder
-import com.hadilabs.jawwalstoreseller.model.Store
+import com.hadilabs.jawwalstoreseller.recyclerview.item.ImageMessageItem
 import com.hadilabs.jawwalstoreseller.recyclerview.item.OrderNotificationItem
+import com.hadilabs.jawwalstoreseller.recyclerview.item.TextMessageItem
 import com.xwray.groupie.kotlinandroidextensions.Item
 
 object FirestoreUtil {
@@ -151,20 +151,20 @@ object FirestoreUtil {
 
                 when ( codeNumber.toDouble() ){
 
-                    0.0 -> items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),"جديد",0.0, it.id, null, context ) )
+                    0.0 -> items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, null, context ) )
 
 
                     1.0 -> {
 
                         if (  storesIds!!.contains(  FirebaseAuth.getInstance().currentUser?.uid ) )
-                            items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),"تم تقديم عرض",0.0, it.id, null, context ) )
+                            items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, null, context ) )
 
                     }
 
                     2.0 -> {
 
                         if ( it.getString("acceptedStoreId") == FirebaseAuth.getInstance().currentUser?.uid )
-                            items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),"تم قبول عرضك",0.0, it.id, FirebaseAuth.getInstance().currentUser?.uid, context ) )
+                            items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, FirebaseAuth.getInstance().currentUser?.uid, context ) )
 
                     }
 
@@ -221,6 +221,86 @@ object FirestoreUtil {
 
 
 
+
+    fun getOrCreateChatChannel( otherUserId: String, orderId: String, onComplete:(channelId: String) -> Unit ){
+
+        currentUserDocRef.collection( "engagedChatChannels" ).document( orderId ).get().addOnSuccessListener {
+
+            // if chat channel already exists which mean we already chatting with other user
+            if ( it.exists() ){
+                onComplete( it["channelId"] as String ) // get the field "channelId" from DocumentSnapshot
+                return@addOnSuccessListener
+            }
+
+            // otherwise if chat channel doesn't exists create new chat channel
+
+            val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+
+            val newChannel = chatChannelsCollectionReference.document()
+
+            newChannel.set( mapOf( "userIds" to mutableListOf( currentUserId, otherUserId )  , "orderId" to orderId ) )
+
+            // save chat channel id in both users who chat together
+
+            currentUserDocRef
+                    .collection( "engagedChatChannels" )
+                    .document( orderId )
+                    .set( mapOf( "channelId" to newChannel.id, "customerId" to otherUserId ) ) // the newChannel.id is the id of channel document inside Firestore
+
+            firestoreInstence.collection("users").document( otherUserId )
+                    .collection( "engagedChatChannels" )
+                    .document( orderId )
+                    .set( mapOf( "channelId" to newChannel.id, "repairShopId" to currentUserId) )
+
+            onComplete( newChannel.id )
+
+
+        }
+
+    }
+
+
+    fun addChatMessagesListener(channelId: String, context: Context, onListen: (List<Item>) -> Unit ) : ListenerRegistration {
+
+        return chatChannelsCollectionReference.document( channelId ).collection("messages")
+                .orderBy("time")
+                .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+
+                    if ( firebaseFirestoreException != null ){
+                        Log.e("FIRESTORE", "ChatMessageListener error.", firebaseFirestoreException)
+                        return@addSnapshotListener
+                    }
+
+                    val items = mutableListOf<Item>()
+
+                    querySnapshot!!.forEach {
+
+                        if ( it["type"] == MessageType.TEXT ){
+
+                            items.add( TextMessageItem( it.toObject(TextMessage::class.java), context ) )
+
+                        }else{
+
+                            items.add( ImageMessageItem( it.toObject(ImageMessage::class.java), context ) )
+
+                        }
+
+                    }
+
+                    onListen(items)
+
+
+                }
+
+    }
+
+    fun sendMessage(message: Message, channelId: String ){
+
+        chatChannelsCollectionReference.document( channelId )
+                .collection( "messages" )
+                .add( message )
+
+    }
 
 
 

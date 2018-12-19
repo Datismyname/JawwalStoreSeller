@@ -21,8 +21,14 @@
     <string name="send_offer_pre_pricing_details">(السعر النهائي يحدد بعد الفحص)</string>
     <string name="send_offer_button">أرسل العرض</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="repair_order_status_new">جديد</string>
+    <string name="repair_order_status_offered">تم تقديم عرض</string>
+    <string name="repair_order_status_accepted">تم قبول عرضك</string>
 
+
+
+
+
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
 
 </resources>

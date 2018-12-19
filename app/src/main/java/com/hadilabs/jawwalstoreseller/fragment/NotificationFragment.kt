@@ -209,15 +209,40 @@ class NotificationFragment : Fragment() {
 
         if ( item is OrderNotificationItem ){
 
-            if ( item.orderStatus == "جديد" ) {
+            when ( item.repairOrder.orderStatus!!["codeName"].toString() ) {
 
-                startActivity<RepairOrderDetailsActivity>(
-                        "phoneType" to item.repairOrder.phoneType,
-                        "problemTitle" to "(" + item.repairOrder.problemTitle + ")",
-                        "problemPreDescription" to "- " + item.repairOrder.problemPreDescription,
-                        "problemDescription" to "- " + item.repairOrder.problemDescription,
-                        "repairOrderId" to item.orderId
-                )
+                "new" ->{
+
+                    startActivity<RepairOrderDetailsActivity>(
+                            "phoneType" to item.repairOrder.phoneType,
+                            "problemTitle" to "(" + item.repairOrder.problemTitle + ")",
+                            "problemPreDescription" to "- " + item.repairOrder.problemPreDescription,
+                            "problemDescription" to "- " + item.repairOrder.problemDescription,
+                            "repairOrderId" to item.orderId
+                    )
+
+                }
+
+
+                "offered" ->{
+
+                    //TODO: send it to RepairOrderDetailsActivity with orderStatus to see the offer or delete it "no edit"
+
+                }
+
+
+
+                "accepted" ->{
+
+                    startActivity<ChatActivity>(
+                            AppConstants.CUSTOMER_NAME to "بعدين",
+                            AppConstants.CUSTOMER_ID to item.repairOrder.userId!!,
+                            RepairConstants.REPAIR_ORDER_ID to item.orderId,
+                            RepairConstants.REPAIR_ORDER_STATUS to item.repairOrder.orderStatus["codeNumber"]!!.toString()
+                    )
+
+                }
+
 
             }
 

@@ -25,7 +25,8 @@
         <activity android:name=".SignInActivity" />
         <activity android:name=".AcceptedOffersActivity" />
         <activity android:name=".OfferedRepairOrdersActivity" />
-        <activity android:name=".NewRepairActivity"></activity>
+        <activity android:name=".NewRepairActivity" />
+        <activity android:name=".ChatActivity"></activity>
     </application>
 
 </manifest>
