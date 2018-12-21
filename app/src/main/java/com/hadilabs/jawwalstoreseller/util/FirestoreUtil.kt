@@ -148,15 +148,8 @@ object FirestoreUtil {
 
                 when ( codeNumber.toDouble() ){
 
-                    0.0 -> items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, null ) )
+                    in 0.0..1.0 -> items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, null ) )
 
-
-                    1.0 -> {
-
-                        if (  storesIds!!.contains(  FirebaseAuth.getInstance().currentUser?.uid ) )
-                            items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, null ) )
-
-                    }
 
                     2.0 -> {
 

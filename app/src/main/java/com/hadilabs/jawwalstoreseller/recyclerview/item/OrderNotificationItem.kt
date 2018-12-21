@@ -1,6 +1,7 @@
 package com.hadilabs.jawwalstoreseller.recyclerview.item
 
 import android.graphics.Color
+import com.google.firebase.auth.FirebaseAuth
 import com.hadilabs.jawwalstoreseller.R
 import com.hadilabs.jawwalstoreseller.model.RepairOrder
 import com.xwray.groupie.kotlinandroidextensions.Item
@@ -19,34 +20,31 @@ class OrderNotificationItem(
 
         viewHolder.textView_problem_title.text = "(${repairOrder.problemTitle})"
 
+        val storesIds = repairOrder.orderStatus!!["storesIds"] as ArrayList<*>?
+
+
+        when( repairOrder.orderStatus["codeName"].toString() ){
+
+            "new" ->   setStatusUI( "جديد", Color.RED, R.drawable.rect_rounded_red, viewHolder )
 
 
 
-        when( repairOrder.orderStatus!!["codeName"].toString() ){
+            "offered" ->
 
-            "new" ->   {
+                if ( !storesIds.isNullOrEmpty() )
 
-                viewHolder.textView_order_status.text = "جديد"
-                viewHolder.textView_order_status.textColor = Color.RED
-                viewHolder.relativeLayout_prefix.backgroundResource = R.drawable.rect_rounded_red
+                    if ( storesIds.contains( FirebaseAuth.getInstance().currentUser?.uid ) )
+                        setStatusUI( "تم تقديم عرض", orange(), R.drawable.rect_round_orange, viewHolder )
 
-            }
+                    else
+                        setStatusUI( "جديد", Color.RED, R.drawable.rect_rounded_red, viewHolder )
 
-            "offered" ->   {
 
-                viewHolder.textView_order_status.text = "تم تقديم عرض"
-                viewHolder.textView_order_status.textColor = "#ff9500".toColor()
-                viewHolder.relativeLayout_prefix.backgroundResource = R.drawable.rect_round_orange
 
-            }
 
-            "accepted" ->   {
+            "accepted" ->   setStatusUI( "تم قبول عرضك!", green(), R.drawable.rect_rounded_green, viewHolder )
 
-                viewHolder.textView_order_status.text = "تم قبول عرضك!"
-                viewHolder.textView_order_status.textColor = "#297b00".toColor()
-                viewHolder.relativeLayout_prefix.backgroundResource = R.drawable.rect_rounded_green
 
-            }
 
 
 
@@ -61,7 +59,18 @@ class OrderNotificationItem(
 
     override fun getLayout() = R.layout.item_order_notification
 
-    fun String.toColor(): Int = Color.parseColor(this)
+
+    private fun setStatusUI(status: String, color: Int, backgroundResource: Int ,viewHolder: ViewHolder){
+
+        viewHolder.textView_order_status.text = status
+        viewHolder.textView_order_status.textColor = color
+        viewHolder.relativeLayout_prefix.backgroundResource = backgroundResource //
+
+    }
+
+    fun green(): Int = Color.parseColor("#297b00" )
+    fun orange() : Int = Color.parseColor("#ff9500")
+
 
 
     private fun chooseRatingIcon(viewHolder: ViewHolder, rating: Double ){
