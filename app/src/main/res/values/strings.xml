@@ -4,6 +4,7 @@
     <string name="title_account">حسابي</string>
     <string name="title_history">التاريخ</string>
     <string name="title_notifications">تنبيهاتي</string>
+    <string name="title_open_orders">الطلبات المفتوحه</string>
     <string name="title_store">المبيعات</string>
 
     <string name="sign_in">تسجيل الدخول</string>
@@ -26,9 +27,9 @@
     <string name="repair_order_status_accepted">تم قبول عرضك</string>
 
 
-
-
-
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

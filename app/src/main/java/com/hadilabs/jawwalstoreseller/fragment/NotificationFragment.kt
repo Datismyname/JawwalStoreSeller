@@ -50,7 +50,7 @@ class NotificationFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_notification, container, false)
 
-        FirestoreUtil.addOrdersNotificationListener ( context!!, this::updateNewRecyclerView )
+        FirestoreUtil.addOrdersNotificationListener ( this::updateNewRecyclerView )
 
 
 
@@ -234,12 +234,18 @@ class NotificationFragment : Fragment() {
 
                 "accepted" ->{
 
-                    startActivity<ChatActivity>(
-                            AppConstants.CUSTOMER_NAME to "بعدين",
-                            AppConstants.CUSTOMER_ID to item.repairOrder.userId!!,
-                            RepairConstants.REPAIR_ORDER_ID to item.orderId,
-                            RepairConstants.REPAIR_ORDER_STATUS to item.repairOrder.orderStatus["codeNumber"]!!.toString()
-                    )
+                    FirestoreUtil.updateRepairOrder( item.orderId, mapOf( "orderStatus" to mutableMapOf( "codeName" to "opened by seller",  "codeNumber" to 3 ) ) ){
+
+                        startActivity<ChatActivity>(
+                                AppConstants.CUSTOMER_NAME to "بعدين",
+                                AppConstants.CUSTOMER_ID to item.repairOrder.userId!!,
+                                RepairConstants.REPAIR_ORDER_ID to item.orderId,
+                                RepairConstants.REPAIR_ORDER_STATUS to item.repairOrder.orderStatus["codeNumber"]!!.toString()
+                        )
+
+
+                    }
+
 
                 }
 

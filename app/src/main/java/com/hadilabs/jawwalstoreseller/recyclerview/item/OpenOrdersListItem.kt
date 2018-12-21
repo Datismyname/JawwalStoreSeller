@@ -5,13 +5,13 @@ import com.hadilabs.jawwalstoreseller.R
 import com.hadilabs.jawwalstoreseller.model.RepairOrder
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
-import kotlinx.android.synthetic.main.item_order_notification.*
-import org.jetbrains.anko.backgroundResource
+import kotlinx.android.synthetic.main.item_open_orders_list.*
+
 import org.jetbrains.anko.textColor
 
-class OrderNotificationItem(
+class OpenOrdersListItem(
         val repairOrder: RepairOrder,
-        val userRating:Double, val orderId: String, val acceptedStoreId: String?) : Item(){
+        val userRating:Double, val orderId: String, val acceptedStoreId: String?) : Item() {
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
 
@@ -20,51 +20,33 @@ class OrderNotificationItem(
         viewHolder.textView_problem_title.text = "(${repairOrder.problemTitle})"
 
 
-
+        viewHolder.textView_order_status.textColor = "#297b00".toColor()
 
         when( repairOrder.orderStatus!!["codeName"].toString() ){
 
-            "new" ->   {
+            "opened by seller" -> viewHolder.textView_order_status.text = "تحت الصيانة"
 
-                viewHolder.textView_order_status.text = "جديد"
-                viewHolder.textView_order_status.textColor = Color.RED
-                viewHolder.relativeLayout_prefix.backgroundResource = R.drawable.rect_rounded_red
+            "wait for delivery" -> viewHolder.textView_order_status.text = "في انتظار استلام الجوال"
 
-            }
-
-            "offered" ->   {
-
-                viewHolder.textView_order_status.text = "تم تقديم عرض"
-                viewHolder.textView_order_status.textColor = "#ff9500".toColor()
-                viewHolder.relativeLayout_prefix.backgroundResource = R.drawable.rect_round_orange
-
-            }
-
-            "accepted" ->   {
-
-                viewHolder.textView_order_status.text = "تم قبول عرضك!"
-                viewHolder.textView_order_status.textColor = "#297b00".toColor()
-                viewHolder.relativeLayout_prefix.backgroundResource = R.drawable.rect_rounded_green
-
-            }
-
+            "delivered" -> viewHolder.textView_order_status.text = "انتهى الطلب"
 
 
         }
 
 
-        chooseRatingIcon( viewHolder, userRating )
 
+
+        chooseRatingIcon(viewHolder, userRating)
 
 
     }
 
-    override fun getLayout() = R.layout.item_order_notification
+    override fun getLayout() = R.layout.item_open_orders_list
 
     fun String.toColor(): Int = Color.parseColor(this)
 
 
-    private fun chooseRatingIcon(viewHolder: ViewHolder, rating: Double ){
+    private fun chooseRatingIcon(viewHolder: ViewHolder, rating: Double) {
 
         val first: Int
         val second: Int
@@ -175,7 +157,7 @@ class OrderNotificationItem(
 
             }
 
-            5.0 ->  {
+            5.0 -> {
 
                 first = R.drawable.ic_star_24dp
                 second = R.drawable.ic_star_24dp
@@ -196,19 +178,15 @@ class OrderNotificationItem(
             }
 
 
-
         }
 
-        viewHolder.imageView_rating.setImageResource( first )
-        viewHolder.imageView_rating_2.setImageResource( second )
-        viewHolder.imageView_rating_3.setImageResource( third )
-        viewHolder.imageView_rating_4.setImageResource( forth )
-        viewHolder.imageView_rating_5.setImageResource( fifth )
+        viewHolder.imageView_rating.setImageResource(first)
+        viewHolder.imageView_rating_2.setImageResource(second)
+        viewHolder.imageView_rating_3.setImageResource(third)
+        viewHolder.imageView_rating_4.setImageResource(forth)
+        viewHolder.imageView_rating_5.setImageResource(fifth)
 
 
     }
-
-
-
-
 }
+

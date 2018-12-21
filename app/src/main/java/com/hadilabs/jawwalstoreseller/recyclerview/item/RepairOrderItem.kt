@@ -46,31 +46,31 @@ class RepairOrderItem(val repairOrder: RepairOrder,val orderStatus:String, val u
 
             in 0.0..0.4 -> {
 
-                first = R.drawable.ic_star_border_gary_24dp
-                second = R.drawable.ic_star_border_gary_24dp
-                third = R.drawable.ic_star_border_gary_24dp
-                forth = R.drawable.ic_star_border_gary_24dp
-                fifth = R.drawable.ic_star_border_gary_24dp
+                first = R.drawable.ic_star_border_24dp
+                second = R.drawable.ic_star_border_24dp
+                third = R.drawable.ic_star_border_24dp
+                forth = R.drawable.ic_star_border_24dp
+                fifth = R.drawable.ic_star_border_24dp
 
             }
 
             in 0.5..0.9 -> {
 
                 first = R.drawable.ic_star_half_24dp
-                second = R.drawable.ic_star_border_gary_24dp
-                third = R.drawable.ic_star_border_gary_24dp
-                forth = R.drawable.ic_star_border_gary_24dp
-                fifth = R.drawable.ic_star_border_gary_24dp
+                second = R.drawable.ic_star_border_24dp
+                third = R.drawable.ic_star_border_24dp
+                forth = R.drawable.ic_star_border_24dp
+                fifth = R.drawable.ic_star_border_24dp
 
             }
 
             in 1.0..1.4 -> {
 
                 first = R.drawable.ic_star_24dp
-                second = R.drawable.ic_star_border_gary_24dp
-                third = R.drawable.ic_star_border_gary_24dp
-                forth = R.drawable.ic_star_border_gary_24dp
-                fifth = R.drawable.ic_star_border_gary_24dp
+                second = R.drawable.ic_star_border_24dp
+                third = R.drawable.ic_star_border_24dp
+                forth = R.drawable.ic_star_border_24dp
+                fifth = R.drawable.ic_star_border_24dp
 
             }
 
@@ -78,9 +78,9 @@ class RepairOrderItem(val repairOrder: RepairOrder,val orderStatus:String, val u
 
                 first = R.drawable.ic_star_24dp
                 second = R.drawable.ic_star_half_24dp
-                third = R.drawable.ic_star_border_gary_24dp
-                forth = R.drawable.ic_star_border_gary_24dp
-                fifth = R.drawable.ic_star_border_gary_24dp
+                third = R.drawable.ic_star_border_24dp
+                forth = R.drawable.ic_star_border_24dp
+                fifth = R.drawable.ic_star_border_24dp
 
             }
 
@@ -88,9 +88,9 @@ class RepairOrderItem(val repairOrder: RepairOrder,val orderStatus:String, val u
 
                 first = R.drawable.ic_star_24dp
                 second = R.drawable.ic_star_24dp
-                third = R.drawable.ic_star_border_gary_24dp
-                forth = R.drawable.ic_star_border_gary_24dp
-                fifth = R.drawable.ic_star_border_gary_24dp
+                third = R.drawable.ic_star_border_24dp
+                forth = R.drawable.ic_star_border_24dp
+                fifth = R.drawable.ic_star_border_24dp
 
             }
 
@@ -99,8 +99,8 @@ class RepairOrderItem(val repairOrder: RepairOrder,val orderStatus:String, val u
                 first = R.drawable.ic_star_24dp
                 second = R.drawable.ic_star_24dp
                 third = R.drawable.ic_star_half_24dp
-                forth = R.drawable.ic_star_border_gary_24dp
-                fifth = R.drawable.ic_star_border_gary_24dp
+                forth = R.drawable.ic_star_border_24dp
+                fifth = R.drawable.ic_star_border_24dp
 
             }
 
@@ -109,8 +109,8 @@ class RepairOrderItem(val repairOrder: RepairOrder,val orderStatus:String, val u
                 first = R.drawable.ic_star_24dp
                 second = R.drawable.ic_star_24dp
                 third = R.drawable.ic_star_24dp
-                forth = R.drawable.ic_star_border_gary_24dp
-                fifth = R.drawable.ic_star_border_gary_24dp
+                forth = R.drawable.ic_star_border_24dp
+                fifth = R.drawable.ic_star_border_24dp
 
             }
 
@@ -120,7 +120,7 @@ class RepairOrderItem(val repairOrder: RepairOrder,val orderStatus:String, val u
                 second = R.drawable.ic_star_24dp
                 third = R.drawable.ic_star_24dp
                 forth = R.drawable.ic_star_half_24dp
-                fifth = R.drawable.ic_star_border_gary_24dp
+                fifth = R.drawable.ic_star_border_24dp
 
             }
 
@@ -130,7 +130,7 @@ class RepairOrderItem(val repairOrder: RepairOrder,val orderStatus:String, val u
                 second = R.drawable.ic_star_24dp
                 third = R.drawable.ic_star_24dp
                 forth = R.drawable.ic_star_24dp
-                fifth = R.drawable.ic_star_border_gary_24dp
+                fifth = R.drawable.ic_star_border_24dp
 
             }
 

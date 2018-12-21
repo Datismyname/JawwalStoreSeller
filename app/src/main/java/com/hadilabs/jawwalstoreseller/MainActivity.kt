@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.google.firebase.firestore.ListenerRegistration
 import com.hadilabs.jawwalstoreseller.fragment.NotificationFragment
+import com.hadilabs.jawwalstoreseller.fragment.OpenOrdersListFragment
+import com.hadilabs.jawwalstoreseller.fragment.OrdersHistoryFragment
 import com.hadilabs.jawwalstoreseller.recyclerview.item.RepairOrderItem
 import com.hadilabs.jawwalstoreseller.util.FirestoreUtil
 import com.xwray.groupie.GroupAdapter
@@ -41,11 +43,15 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment( NotificationFragment() )
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.navigation_store -> {
-
+                R.id.navigation_open_orders -> {
+                    replaceFragment( OpenOrdersListFragment() )
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_history -> {
+                    replaceFragment( OrdersHistoryFragment() )
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.navigation_store -> {
 
                     return@setOnNavigationItemSelectedListener true
                 }

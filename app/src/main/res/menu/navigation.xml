@@ -7,14 +7,19 @@
         android:title="@string/title_notifications" />
 
     <item
-        android:id="@+id/navigation_store"
-        android:icon="@drawable/ic_shopping_cart_black_24dp"
-        android:title="@string/title_store" />
+        android:id="@+id/navigation_open_orders"
+        android:icon="@drawable/ic_folder_black_24dp"
+        android:title="@string/title_open_orders" />
 
     <item
         android:id="@+id/navigation_history"
         android:icon="@drawable/ic_history_black_24dp"
         android:title="@string/title_history" />
+
+    <item
+        android:id="@+id/navigation_store"
+        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        android:title="@string/title_store" />
 
     <item
         android:id="@+id/navigation_account"

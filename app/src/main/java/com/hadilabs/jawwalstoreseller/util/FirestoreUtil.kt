@@ -8,10 +8,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.hadilabs.jawwalstoreseller.model.*
-import com.hadilabs.jawwalstoreseller.recyclerview.item.RepairOrderItem
-import com.hadilabs.jawwalstoreseller.recyclerview.item.ImageMessageItem
-import com.hadilabs.jawwalstoreseller.recyclerview.item.OrderNotificationItem
-import com.hadilabs.jawwalstoreseller.recyclerview.item.TextMessageItem
+import com.hadilabs.jawwalstoreseller.recyclerview.item.*
 import com.xwray.groupie.kotlinandroidextensions.Item
 
 object FirestoreUtil {
@@ -125,7 +122,7 @@ object FirestoreUtil {
 
     }
 
-    fun addOrdersNotificationListener( context: Context, onListen: (List<Item>) -> Unit ): ListenerRegistration {
+    fun addOrdersNotificationListener( onListen: (List<Item>) -> Unit ): ListenerRegistration {
 
         return repairOrdersCollectionReference.whereLessThanOrEqualTo("orderStatus.codeNumber",2.0 ).addSnapshotListener{querySnapshot, firebaseFirestoreException ->
 
@@ -151,20 +148,20 @@ object FirestoreUtil {
 
                 when ( codeNumber.toDouble() ){
 
-                    0.0 -> items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, null, context ) )
+                    0.0 -> items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, null ) )
 
 
                     1.0 -> {
 
                         if (  storesIds!!.contains(  FirebaseAuth.getInstance().currentUser?.uid ) )
-                            items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, null, context ) )
+                            items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, null ) )
 
                     }
 
                     2.0 -> {
 
                         if ( it.getString("acceptedStoreId") == FirebaseAuth.getInstance().currentUser?.uid )
-                            items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, FirebaseAuth.getInstance().currentUser?.uid, context ) )
+                            items.add( OrderNotificationItem( it.toObject( RepairOrder::class.java ),0.0, it.id, FirebaseAuth.getInstance().currentUser?.uid ) )
 
                     }
 
@@ -175,6 +172,55 @@ object FirestoreUtil {
 
             }
 
+
+            onListen(items)
+        }
+
+    }
+
+
+    fun addOpenOrdersListener( onListen: (List<Item>) -> Unit ): ListenerRegistration {
+
+        return repairOrdersCollectionReference.whereGreaterThanOrEqualTo("orderStatus.codeNumber",3.0 ).whereLessThanOrEqualTo("orderStatus.codeNumber",5.0 ).addSnapshotListener{querySnapshot, firebaseFirestoreException ->
+
+            if (firebaseFirestoreException != null) {
+                Log.e("FIXSTOREORDER", "stores responds listener error.", firebaseFirestoreException)
+                return@addSnapshotListener
+            }
+
+
+            val items = mutableListOf<Item>()
+
+            querySnapshot!!.forEach {
+
+                items.add( OpenOrdersListItem( it.toObject( RepairOrder::class.java ),3.5, it.id, FirebaseAuth.getInstance().currentUser?.uid ) )
+
+            }
+
+            onListen(items)
+        }
+
+    }
+
+
+
+    fun addHistoryListener( onListen: (List<Item>) -> Unit ): ListenerRegistration {
+
+        return repairOrdersCollectionReference.whereEqualTo("orderStatus.codeNumber",6.0 ).addSnapshotListener{querySnapshot, firebaseFirestoreException ->
+
+            if (firebaseFirestoreException != null) {
+                Log.e("FIXSTOREORDER", "stores responds listener error.", firebaseFirestoreException)
+                return@addSnapshotListener
+            }
+
+
+            val items = mutableListOf<Item>()
+
+            querySnapshot!!.forEach {
+
+                items.add( OpenOrdersListItem( it.toObject( RepairOrder::class.java ),4.0, it.id, FirebaseAuth.getInstance().currentUser?.uid ) )
+
+            }
 
             onListen(items)
         }
