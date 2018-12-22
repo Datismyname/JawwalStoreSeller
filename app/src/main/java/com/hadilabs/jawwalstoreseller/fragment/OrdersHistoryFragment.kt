@@ -22,6 +22,7 @@ import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.fragment_orders_history.*
+import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.support.v4.startActivity
 
 
@@ -48,7 +49,8 @@ class OrdersHistoryFragment : Fragment() {
         fun init(){
             recycler_view_orders_history.apply {
 
-                ResourcesCompat.getDrawable(resources, R.drawable.rect_rounded_red, null)
+                //backgroundResource = R.drawable.rect_rounded_red
+                //ResourcesCompat.getDrawable(resources, , null)
 
                 layoutManager = LinearLayoutManager( context )
 
@@ -72,11 +74,14 @@ class OrdersHistoryFragment : Fragment() {
             }
         }
 
-        if ( shouldInitRecyclerView ){
-            init()
-        }else{
-            update()
-        }
+
+        if ( !items.isNullOrEmpty() )
+            if ( shouldInitRecyclerView ){
+                init()
+            }else{
+                update()
+            }
+
 
     }
 

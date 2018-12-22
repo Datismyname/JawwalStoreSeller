@@ -134,14 +134,14 @@ object FirestoreUtil {
 
             val items = mutableListOf<Item>()
             var orderStatus: Map<*, *>
-            var storesIds: ArrayList<*>?
+            //var storesIds: Map<*, *>?
             var codeNumber:Long
 
             querySnapshot!!.forEach {
 
                 orderStatus = it.get( "orderStatus" ) as Map<*, *>
 
-                storesIds = orderStatus["storesIds"] as ArrayList<*>?
+                //storesIds = it.get("offeredStoresIds") as Map<*, *>?
 
 
                 codeNumber = orderStatus["codeNumber"] as Long
@@ -238,7 +238,7 @@ object FirestoreUtil {
                 .set( RepairOffer( store, price ) )
                 .addOnSuccessListener {
 
-                    updateRepairOrder( orderId, mapOf( "orderStatus" to mutableMapOf( "codeName" to "offered",  "codeNumber" to 1, "storesIds" to FieldValue.arrayUnion( FirebaseAuth.getInstance().currentUser!!.uid ) ) ) ){
+                    updateRepairOrder( orderId, mapOf( "orderStatus" to mutableMapOf( "codeName" to "offered",  "codeNumber" to 1), "offeredStoresIds" to FieldValue.arrayUnion( FirebaseAuth.getInstance().currentUser!!.uid ) ) ){
                         //TODO: send notification to the user
                         onComplete()
                     }

@@ -20,10 +20,10 @@ class OrderNotificationItem(
 
         viewHolder.textView_problem_title.text = "(${repairOrder.problemTitle})"
 
-        val storesIds = repairOrder.orderStatus!!["storesIds"] as ArrayList<*>?
+        val storesIds = repairOrder.offeredStoresIds as ArrayList<*>?
 
 
-        when( repairOrder.orderStatus["codeName"].toString() ){
+        when( repairOrder.orderStatus!!["codeName"].toString() ){
 
             "new" ->   setStatusUI( "جديد", Color.RED, R.drawable.rect_rounded_red, viewHolder )
 

@@ -1,6 +1,7 @@
 package com.hadilabs.jawwalstoreseller.model
 
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 data class RepairOrder(
@@ -14,9 +15,10 @@ data class RepairOrder(
         val orderTime: Date?,
         val acceptedStoreName: String?,
         val acceptedStoreId: String?,
-        val repairOrderId: String?
+        val repairOrderId: String?,
+        val offeredStoresIds: ArrayList<*>?
 ) {
 
-    constructor(): this( "","","","","",null,null,null,null, null, null)
+    constructor(): this( "","","","","",null,null,null,null, null, null, null)
 
 }

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ListenerRegistration
 import com.hadilabs.jawwalstoreseller.*
 import com.hadilabs.jawwalstoreseller.recyclerview.item.OrderNotificationItem
@@ -25,6 +26,7 @@ import kotlinx.android.synthetic.main.activity_new_repair.*
 import kotlinx.android.synthetic.main.activity_offered_repair_orders.*
 import kotlinx.android.synthetic.main.fragment_notification.*
 import kotlinx.android.synthetic.main.fragment_notification.view.*
+import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import java.io.Serializable
@@ -88,7 +90,9 @@ class NotificationFragment : Fragment() {
         fun init(){
             recycler_view_notification_order.apply {
 
-                ResourcesCompat.getDrawable(resources, R.drawable.rect_rounded_red, null)
+                //backgroundResource = R.drawable.rect_rounded_red
+
+                //ResourcesCompat.getDrawable(resources, R.drawable.rect_rounded_red, null)
 
                 layoutManager = LinearLayoutManager( context )
 
@@ -112,11 +116,12 @@ class NotificationFragment : Fragment() {
             }
         }
 
-        if ( shouldInitNewRecyclerView ){
-            init()
-        }else{
-            update()
-        }
+        if ( !items.isNullOrEmpty() )
+            if ( shouldInitNewRecyclerView ){
+                init()
+            }else{
+                update()
+            }
 
     }
 
@@ -226,7 +231,19 @@ class NotificationFragment : Fragment() {
 
                 "offered" ->{
 
+                    val storesIds = item.repairOrder.offeredStoresIds as ArrayList<*>?
+
+                    if ( storesIds!!.contains( FirebaseAuth.getInstance().currentUser?.uid ) )
+
                     //TODO: send it to RepairOrderDetailsActivity with orderStatus to see the offer or delete it "no edit"
+                     else
+                        startActivity<RepairOrderDetailsActivity>(
+                                "phoneType" to item.repairOrder.phoneType,
+                                "problemTitle" to "(" + item.repairOrder.problemTitle + ")",
+                                "problemPreDescription" to "- " + item.repairOrder.problemPreDescription,
+                                "problemDescription" to "- " + item.repairOrder.problemDescription,
+                                "repairOrderId" to item.orderId
+                        )
 
                 }
 

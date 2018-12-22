@@ -22,6 +22,7 @@ import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.fragment_open_orders_list.*
+import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.support.v4.startActivity
 
 
@@ -49,7 +50,8 @@ class OpenOrdersListFragment : Fragment() {
         fun init(){
             recycler_view_open_orders_list.apply {
 
-                ResourcesCompat.getDrawable(resources, R.drawable.rect_rounded_red, null)
+                //backgroundResource = R.drawable.rect_rounded_red
+                //ResourcesCompat.getDrawable(resources, , null)
 
                 layoutManager = LinearLayoutManager( context )
 
@@ -73,11 +75,12 @@ class OpenOrdersListFragment : Fragment() {
             }
         }
 
-        if ( shouldInitRecyclerView ){
-            init()
-        }else{
-            update()
-        }
+        if ( !items.isNullOrEmpty() )
+            if ( shouldInitRecyclerView){
+                init()
+            }else{
+                update()
+            }
 
     }
 
