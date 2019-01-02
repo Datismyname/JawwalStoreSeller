@@ -174,7 +174,7 @@ object FirestoreUtil {
 
     fun addOpenOrdersListener( onListen: (List<Item>) -> Unit ): ListenerRegistration {
 
-        return repairOrdersCollectionReference.whereGreaterThanOrEqualTo("orderStatus.codeNumber",3.0 ).whereLessThanOrEqualTo("orderStatus.codeNumber",5.0 ).addSnapshotListener{querySnapshot, firebaseFirestoreException ->
+        return repairOrdersCollectionReference.whereGreaterThanOrEqualTo("orderStatus.codeNumber",3.0 ).whereLessThanOrEqualTo("orderStatus.codeNumber",5.0 ).whereEqualTo("acceptedStoreId", FirebaseAuth.getInstance().currentUser?.uid ).addSnapshotListener{querySnapshot, firebaseFirestoreException ->
 
             if (firebaseFirestoreException != null) {
                 Log.e("FIXSTOREORDER", "stores responds listener error.", firebaseFirestoreException)
@@ -199,7 +199,7 @@ object FirestoreUtil {
 
     fun addHistoryListener( onListen: (List<Item>) -> Unit ): ListenerRegistration {
 
-        return repairOrdersCollectionReference.whereEqualTo("orderStatus.codeNumber",6.0 ).addSnapshotListener{querySnapshot, firebaseFirestoreException ->
+        return repairOrdersCollectionReference.whereEqualTo("orderStatus.codeNumber",6.0 ).whereEqualTo("acceptedStoreId", FirebaseAuth.getInstance().currentUser?.uid ).addSnapshotListener{querySnapshot, firebaseFirestoreException ->
 
             if (firebaseFirestoreException != null) {
                 Log.e("FIXSTOREORDER", "stores responds listener error.", firebaseFirestoreException)

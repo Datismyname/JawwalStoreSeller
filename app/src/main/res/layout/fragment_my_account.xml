@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl"
+    tools:context=".fragment.MyAccountFragment">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_profile_basic_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        >
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            >
+            <ImageView
+                android:id="@+id/imageView_edit_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                app:srcCompat="@drawable/ic_settings_white_24dp"/>
+            <TextView
+                android:id="@+id/textView_edit_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageView_edit_profile"
+                android:textColor="@color/White"
+                android:text="الإعدادات"/>
+        </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView_profile_pic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/ic_account_circle_black_24dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_rating_stars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView_profile_pic"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/imageView_rating"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            app:srcCompat="@drawable/ic_star_24dp" />
+
+        <ImageView
+            android:id="@+id/imageView_rating_2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_toStartOf="@id/imageView_rating"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            app:srcCompat="@drawable/ic_star_24dp" />
+
+        <ImageView
+            android:id="@+id/imageView_rating_3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_toStartOf="@id/imageView_rating_2"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            app:srcCompat="@drawable/ic_star_24dp" />
+
+        <ImageView
+            android:id="@+id/imageView_rating_4"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_toStartOf="@id/imageView_rating_3"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            app:srcCompat="@drawable/ic_star_24dp" />
+
+        <ImageView
+            android:id="@+id/imageView_rating_5"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_toStartOf="@id/imageView_rating_4"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            app:srcCompat="@drawable/ic_star_24dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/editText_store_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@id/relativeLayout_rating_stars"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/White"
+        android:text="اسم المحل"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_below="@id/relativeLayout_profile_basic_info"
+        android:background="@drawable/text_background_with_border"
+        >
+    <TextView
+        android:id="@+id/editText_balance_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="الرصيد: "/>
+    <TextView
+        android:id="@+id/editText_balance_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/editText_balance_text"
+        android:layout_marginTop="10dp"
+        android:text="0.0 ريال"/>
+    </RelativeLayout>
+<RelativeLayout
+    android:id="@+id/relativeLayout_repair_order"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp"
+    android:layout_below="@+id/relativeLayout_balance"
+    android:background="@drawable/text_background_with_border"
+    >
+    <TextView
+        android:id="@+id/editText_repair_orders_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="عدد طلبات الصيانة: "/>
+
+    <TextView
+        android:id="@+id/editText_repair_orders_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/editText_repair_orders_text"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="0"/>
+</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout_total_repair_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_below="@+id/relativeLayout_repair_order"
+        android:background="@drawable/text_background_with_border">
+    <TextView
+        android:id="@+id/editText_total_repair_orders_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="مجموع فواتير الصيانه:"/>
+
+    <TextView
+        android:id="@+id/editText_total_repair_orders_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/editText_total_repair_orders_text"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="0"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout_sell_orders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_below="@id/relativeLayout_total_repair_order"
+        android:background="@drawable/text_background_with_border">
+
+    <TextView
+        android:id="@+id/editText_sell_orders_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="المبيعات: "/>
+
+    <TextView
+        android:id="@+id/editText_sell_orders_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/editText_sell_orders_text"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="0"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout_positive_customers_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_below="@id/relativeLayout_sell_orders"
+        android:background="@drawable/text_background_with_border">
+    <TextView
+        android:id="@+id/editText_positive_customers_rating_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/green"
+        android:text=" التقييمات الإيجابية: "/>
+
+    <TextView
+        android:id="@+id/editText_positive_customers_rating_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/editText_positive_customers_rating_text"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/green"
+        android:text="0"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_negative_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_below="@id/relativeLayout_positive_customers_rating"
+        android:background="@drawable/text_background_with_border">
+    <TextView
+        android:id="@+id/editText_negative_customers_rating_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/red"
+        android:text=" التقييمات السلبية: "/>
+
+    <TextView
+        android:id="@+id/editText_negative_customers_rating_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/editText_negative_customers_rating_text"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/red"
+        android:text="0"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

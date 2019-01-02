@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.google.firebase.firestore.ListenerRegistration
+import com.hadilabs.jawwalstoreseller.fragment.MyAccountFragment
 import com.hadilabs.jawwalstoreseller.fragment.NotificationFragment
 import com.hadilabs.jawwalstoreseller.fragment.OpenOrdersListFragment
 import com.hadilabs.jawwalstoreseller.fragment.OrdersHistoryFragment
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_account -> {
-
+                    replaceFragment( MyAccountFragment() )
                     return@setOnNavigationItemSelectedListener true
                 }
 

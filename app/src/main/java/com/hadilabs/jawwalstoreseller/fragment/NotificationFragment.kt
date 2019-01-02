@@ -49,39 +49,16 @@ class NotificationFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
+        return  inflater.inflate(R.layout.fragment_notification, container, false)
 
-        val view = inflater.inflate(R.layout.fragment_notification, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         FirestoreUtil.addOrdersNotificationListener ( this::updateNewRecyclerView )
 
-
-
-        /*view.textView_new_order_title.text = "جديدة"
-        view.textView_offered_orders_title.text = "قدمت عرضك"
-        view.textView_accepted_orders_title.text = "عروضك الموافق عليها"
-
-
-
-        view.cardView_new_order.setOnClickListener {
-            startActivity<NewRepairActivity>()
-        }
-
-
-        view.cardView_offered_order.setOnClickListener {
-            startActivity<OfferedRepairOrdersActivity>()
-        }
-
-        view.cardView_accepted_order.setOnClickListener {
-            startActivity<AcceptedOffersActivity>()
-        }*/
-
-
-
-
-
-        return view
     }
-
 
     private fun updateNewRecyclerView( items: List<Item> ){
 
